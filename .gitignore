@@ -5,3 +5,4 @@ config/environment.rb
 log/*
 public/stylesheets/cache/*
 public/javascripts/cache/*
+db/schema.rb
