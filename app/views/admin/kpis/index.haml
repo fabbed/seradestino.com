@@ -1,0 +1,95 @@
+=tabnav :admin
+
+%h1 Estadísticas
+
+%table#mytable.td_title_table{:cellspacing=>"0"}
+  %tr
+    %td.title.left.black{:colspan => 2} General
+  %tr
+    %td.title Users
+    %td=User.count
+  %tr
+    %td.title Stories
+    %td=Story.count
+  %tr
+    %td.title Comments
+    %td=Comment.count
+  %tr
+    %td.title Newsletter Registrations
+    %td=NewsletterRegistration.count
+  %tr
+    %td.title Suggestions
+    %td=Suggestion.count
+
+.h_20
+
+
+%table#mytable.td_title_table{:cellspacing=>"0", :style => "width: 870px;"}
+  %tr
+    %td.title.left.black{:colspan => 3}="Changes on site (#{link_to_function "crear cambio nuevo", "$('#new_change').slideDown();", :class => "small"})"
+  
+  -Change.find(:all, :order => "change_date desc").each do |change|
+    %tr
+      %td.title=my_date_kpis(change.change_date)
+      %td=change.label
+      %td=change.description
+
+
+.h_20
+
+#new_change.hidden
+  %h2 Create new change
+  
+  -form_for @change do |f|
+    Date when change was uploaded:
+    %br
+    =f.date_select :change_date
+    %br
+    %br
+    Title:
+    %br
+    =f.text_field :label
+    %br
+    %br
+    Description:
+    %br
+    =f.text_area :description
+    %br
+    =submit_tag "Create change"    
+                                                                                                           
+                                                                                                           
+
+%h2 Datos por cada dia
+
+#cada_dia
+  %table#mytable{:cellspacing=>"0", :summary=>"Projects"}
+    -Stats.all.each_with_index do |data, i|
+      -if ((i % 15) == 0)
+        %tr
+          %th Fecha
+          %th # PVs
+          %th # Visitors    
+          %th # PVs p. Visitor    
+          %th # Users
+          %th # Stories
+          %th # Comments
+
+
+      %tr
+        %td{:class => (data.day.to_date).strftime("%A")}=data.day
+        %td="#{data.pageviews}"
+        %td="#{data.visitors} X:#{data.visitors_xalut_count}, G: #{data.visitos_google_count}"
+        %td=sprintf("%.2f",(data.pageviews.to_f / data.visitors.to_f))
+        %td
+          -(data.users).times do
+            ="x"
+
+        %td
+          -(data.stories_with_email).times do
+            ="x"
+          -(data.stories.to_i-data.stories_with_email.to_i).times do
+            ="o"
+          =sprintf("%.2f", (data.stories.to_f / data.visitors.to_f) * 100)
+        %td
+          -(data.comments).times do
+            ="x"

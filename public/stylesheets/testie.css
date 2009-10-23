@@ -1,0 +1,30 @@
+.wrapper {
+  text-align: left;
+  margin: 0 auto;
+  width: 960px; }
+
+body {
+  background: transparent url(/images/new/background_image.jpg) repeat-x scroll center top;
+  font-family: Verdana, Tahoma, Helvetica, Arial;
+  font-size: 10px;
+  color: black;
+  text-align: center; }
+
+#main {
+  background: transparent url(/images/new/background_top.jpg) no-repeat scroll center top;
+  overflow: hidden;
+  width: 960px; }
+  #main #content #middle {
+    background: transparent url(/images/new/content_middle.png) repeat-y scroll 0 0em;
+    display: inline;
+    width: 730px;
+    float: right; }
+    #main #content #middle h2 {
+      font-size: 1.7em;
+      line-height: 1.3em; }
+    #main #content #middle #stories {
+      margin-top: -40px;
+      border: 6px solid red;
+      position: static;
+      float: right;
+      position: relative; }

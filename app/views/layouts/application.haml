@@ -1,0 +1,125 @@
+!!! XML
+!!! Strict
+%html{html_attrs("es")}
+  %head
+    %meta{content_type_attrs("text/html")}
+    :erb
+      <meta name="verify-v1" content="nd/clabopIlPDTbgXhlNswgrO2uUSa2CABjvYNlSAaU=">
+      <link rel=”shortcut icon” href=”favicon.ico” type=”image/x-icon”> 
+    %title=yield(:title)
+
+    = render :partial => "shared/js_and_css"
+
+  /[if IE 7]
+    =stylesheet_link_tag "iefixes_v7"
+
+  /[if IE 6]
+    =stylesheet_link_tag "iefixes_v6"
+
+  %body{:id=>controller.controller_name}
+    .wrapper{:id => controller.action_name}
+      #main
+        #header
+          /#header_login_section
+          #logo
+            =link_to(image_tag("new/que-puta-mierda-logo.png", :class => :fix), root_path)
+            #tagline
+              =image_tag "new/tagline.png", :class => :fix
+          
+          =tabnav :main
+
+        .seperator_line
+
+        #sub_header
+          #header_text
+            ¿TU NOVIA TE DEJO EN TU CUMPLEAÑOS? ¿COMPRASTE UN VUELO PARA EL DÍA EQUIVOCADO?
+            /Y LOS SUPISTE UNA VEZ EN EL AEROPUERTO?
+            #subtext
+              ¡Suéltalo! Todos somos alguna vez víctimas de la mala suerte o de nuestra propia estupidez. Cuenta tu historia y opina sobre las ajenas. ¿Cuando es una cagada y cuando una putada?
+
+          /-if controller.controller_name == "stories" and controller.action_name == "new"
+          /  #vamos &nbsp;              
+
+          #right
+            -unless controller.controller_name == "stories" and controller.action_name == "new"
+              =link_to(image_tag("new/btn_contar_nueva_historia.png"), new_story_path, :id => :new_history)
+    
+        =yield(:sidebar)
+        
+        #content
+          #middle.fix
+            #stories_content
+              -if controller.controller_name == "stories" and controller.action_name == "new"
+                #vamos.fix
+                  &nbsp;
+              #top
+                -unless yield(:top) || flash[:success] || flash[:info] || flash[:error]
+                  .spacer
+                =yield(:top) || "&nbsp;"
+                -if flash[:success] || flash[:info] || flash[:error]
+                  #flash_message
+                    -if flash[:success]
+                      .success
+                        =flash[:success]
+                    -if flash[:info]
+                      .info
+                        =flash[:info]
+                    -if flash[:error]
+                      .error
+                        =flash[:error]
+
+              =yield(:main) || "&nbsp;"
+          = yield
+
+          
+          #end.fix &nbsp;
+          
+          =link_to (image_tag("new/terms.png", :class => :fix), "#", :id => "terms_link")
+
+    =yield(:javascript)
+
+
+    #spinner
+      =image_tag "facebox/loading.gif"
+
+    :erb
+      <script type="text/javascript" src="http://cetrk.com/pages/scripts/0010/4149.js"> </script>
+
+    -if ANALYTICS
+      -if current_user
+        -if current_user.login != "fabito" and current_user.login != "elenoide"
+          :erb
+            <script type="text/javascript">
+            var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+            document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+            </script>
+            <script type="text/javascript">
+            try {
+            var pageTracker = _gat._getTracker("UA-8678890-1");
+            pageTracker._trackPageview();
+            } catch(err) {}</script>
+      -else
+        :erb
+          <script type="text/javascript">
+          var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+          document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+          </script>
+          <script type="text/javascript">
+          try {
+          var pageTracker = _gat._getTracker("UA-8678890-1");
+          pageTracker._trackPageview();
+          } catch(err) {}</script>  
+
+    -if params[:param] == "historia_creado"
+      :erb
+        <!-- Google Website Optimizer Conversion Script -->
+        <script type="text/javascript">
+        if(typeof(_gat)!='object')document.write('<sc'+'ript src="http'+
+        (document.location.protocol=='https:'?'s://ssl':'://www')+
+        '.google-analytics.com/ga.js"></sc'+'ript>')</script>
+        <script type="text/javascript">
+        try {
+        var gwoTracker=_gat._getTracker("UA-78290-22");
+        gwoTracker._trackPageview("/1353356641/goal");
+        }catch(err){}</script>
+        <!-- End of Google Website Optimizer Conversion Script -->
