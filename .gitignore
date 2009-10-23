@@ -4,3 +4,4 @@ config/database.yml
 config/environment.rb
 log/*
 public/stylesheets/cache/*
+public/javascripts/cache/*
