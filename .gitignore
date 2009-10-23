@@ -1,0 +1,6 @@
+tmp/restart.txt
+test/*
+config/database.yml
+config/environment.rb
+log/*
+public/stylesheets/cache/*
