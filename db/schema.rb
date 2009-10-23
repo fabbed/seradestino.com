@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20091002115215) do
+ActiveRecord::Schema.define(:version => 20091023174020) do
 
   create_table "categories", :force => true do |t|
     t.string   "name"
@@ -37,16 +37,6 @@ ActiveRecord::Schema.define(:version => 20091002115215) do
     t.string   "city"
     t.string   "country_name"
     t.string   "country_code"
-  end
-
-  create_table "countries", :force => true do |t|
-    t.string   "name"
-    t.string   "iso"
-    t.boolean  "visible",    :default => true
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.integer  "sort_order"
-    t.integer  "used_id"
   end
 
   create_table "newsletter_registrations", :force => true do |t|
@@ -141,6 +131,19 @@ ActiveRecord::Schema.define(:version => 20091002115215) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "country_code"
+  end
+
+  create_table "survey_answers", :force => true do |t|
+    t.integer  "country_id"
+    t.string   "gender"
+    t.text     "answer_1"
+    t.text     "answer_2"
+    t.text     "answer_3"
+    t.text     "answer_4"
+    t.text     "answer_5"
+    t.string   "email"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "taggings", :force => true do |t|
