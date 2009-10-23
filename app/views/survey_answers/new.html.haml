@@ -1,0 +1,9 @@
+.survey
+  .info
+    %h2 Encuesta sobre simbolos de tu pais
+  %h3 Haznos el favor de participar en esta encuesta, sólo te tardarás 3 minutos. Si nos dejas tu mail, te mandaremos los resultados en unos dias.
+  = render :partial => "form", :locals => {:survey_answer => @survey_answer}
+  / %ul
+  /   %li= link_to 'Back', survey_answers_path
+
+=render :partial => "js_validation", :locals => { :form_id => "survey_1" }

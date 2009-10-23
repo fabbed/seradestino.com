@@ -1,0 +1,6 @@
+%h2 Editing survey_answer
+= render :partial => "form", :locals => {:survey_answer => @survey_answer}
+%ul
+  %li= link_to 'Show', @survey_answer
+  %li= link_to 'Back', survey_answers_path
+  %li= link_to 'Destroy', @survey_answer, :confirm => 'Are you sure?', :method => :delete  

@@ -1,0 +1,8 @@
+%h2 Listing survey_answers
+- if !@survey_answers.empty?
+  .survey_answers
+    = render :partial => "survey_answer", :collection => @survey_answers
+  = will_paginate(@survey_answers)
+- else
+  %p There are no survey_answers to show yet.
+= link_to 'New survey_answer', new_survey_answer_path

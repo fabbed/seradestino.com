@@ -1,0 +1,46 @@
+- content_for :javascript do
+  :javascript
+    $(document).ready(function() {
+      var validator = $("##{form_id}").validate({
+        rules: {
+          "user[login]": {
+            required: true,
+            minlength: 5,
+            maxlength: 100
+          },
+          "survey_answer[country_id]": {
+            required: true
+          },
+          "survey_answer[gender]": {
+            required: true
+          },
+          "survey_answer[answer_1]": {
+            required: true
+          },
+          "survey_answer[email]": {
+            email: true
+          }
+        
+        },
+        messages: {
+        "survey_answer[country_id]": {
+          required: "En que Pais vives?"
+        },
+          "survey_answer[gender]": {
+          required: "Pon tu sexo"
+        },
+        "survey_answer[answer_1]": {
+          required: "Pon al menos un símbolo."
+        },
+        "survey_answer[email]": {
+          email: "Este email no es valido"        
+        }
+        },
+        
+       errorPlacement: function(error, element) {
+             error.insertBefore(element);
+       }        
+        
+        
+      });
+    });

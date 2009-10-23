@@ -1,0 +1,35 @@
+- form_for :survey_answer, :url => { :action => "create"}, :html=> {:id => "survey_1"} do |f|
+  = f.error_messages
+  %p
+    = f.label :country_id, "En qué pais creciste?", :class => :desc
+    =select("survey_answer", "country_id", Country.for_select_box, { :include_blank => true })
+  %p
+    = f.label :gender, "Cuál es tu sexo?", :class => :desc
+    = f.select :gender, [[ "Mujer", "f" ], [ "Hombre", "m" ]], {:include_blank => true}
+
+  %p
+    %h4 Nombra por favor algunos símbolos típicos de tu pais
+    %span (Qué crees tú es representativo de tu pais? Puedes mencionar objetos, personajes de caricaturas, gente famosa u otras cosas típicas de tu pais)
+  %p
+    = f.label :answer_1, "Símbolo 1", :class => :desc
+    = f.text_field :answer_1
+  %p
+    = f.label :answer_2, "Símbolo 2", :class => :desc
+    = f.text_field :answer_2
+  %p
+    = f.label :answer_3, "Símbolo 3", :class => :desc
+    = f.text_field :answer_3
+  %p
+    = f.label :answer_4, "Símbolo 4", :class => :desc
+    = f.text_field :answer_4
+  %p
+    = f.label :answer_5, "Símbolo 5", :class => :desc
+    = f.text_field :answer_5
+  %p
+    .label_with_subtitle
+      = f.label :email, "Tu dirección de mail", :class => :desc
+      %div{:style => "clear:both;"}
+      %span (Si quieres saber los resutados de la encuesta)
+    = f.text_field :email, :class => :desc
+  %p
+    = f.submit "ENVIAR"
