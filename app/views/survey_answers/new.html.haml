@@ -3,6 +3,17 @@
     %h2 Encuesta sobre símbolos de tu pais
     %h3 <b>Sólo te tardarás 2 minutos</b>. Haznos el favor de participar en esta encuesta, Si nos dejas tu mail, te mandaremos los resultados en unos dias.
   .survey_content
-    = render :partial => "form", :locals => {:survey_answer => @survey_answer}
+    = render :partial => "form_survey_1", :locals => {:survey_answer => @survey_answer}
+
+=render :partial => "js_validation", :locals => { :form_id => "survey_1" }
+
+/ SURVEY 2
+
+.survey{:id => "survey"}
+  .info
+    %h2 Encuesta sobre símbolos del destino
+    %h3 <b>Sólo te tardarás 2 minutos</b>. Haznos el favor de participar en esta encuesta, Si nos dejas tu mail, te mandaremos los resultados en unos dias.
+  .survey_content
+    = render :partial => "form_survey_2", :locals => {:survey_answer => @survey_answer}
 
 =render :partial => "js_validation", :locals => { :form_id => "survey_1" }

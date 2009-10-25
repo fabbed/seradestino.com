@@ -9,7 +9,9 @@ class SurveyAnswersController < ApplicationController
   def create
 
     @survey_answer = SurveyAnswer.new(params[:survey_answer])
-    puts "create"
+    @survey_answer.ip = request.env["REMOTE_ADDR"]
+    @survey_answer.referrer = request.env["HTTP_REFERER"]
+
     if @survey_answer.save
       flash[:notice] = 'SurveyAnswer was successfully created.'
       respond_to do |wants|
