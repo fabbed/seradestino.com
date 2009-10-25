@@ -5,18 +5,22 @@ class SurveyAnswersController < ApplicationController
   SURVEY_ANSWERS_PER_PAGE = 20
 
   def create
-    puts "Test"
+
     @survey_answer = SurveyAnswer.new(params[:survey_answer])
-    respond_to do |format|
-      if @survey_answer.save
-        flash[:notice] = 'SurveyAnswer was successfully created.'
-        format.html { redirect_to @survey_answer }
-        format.xml  { render :xml => @survey_answer, :status => :created, :location => @survey_answer }
-      else
-        format.html { render :action => "new" }
-        format.xml  { render :xml => @survey_answer.errors, :status => :unprocessable_entity }
+    puts "create"
+    if @survey_answer.save
+      flash[:notice] = 'SurveyAnswer was successfully created.'
+      respond_to do |wants|
+        wants.js {  render :text => "$('#facebox').html('<h3>Gracias!</h3>')", :layout => false}  
+        wants.html { 
+          redirect_to @survey_answer
+        }
       end
+    else
+      wants.js {  render :text => "alert('Hay errores');", :layout => false}  
+      format.html { render :action => "new" }
     end
+
   end
 
   def destroy

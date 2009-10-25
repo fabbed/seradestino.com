@@ -1,32 +1,32 @@
-%h2 GRACIAS!!!
+:erb
+  <script type="text/javascript">
 
-/ %h2= "SurveyAnswer \"#{@survey_answer.to_param}\""
-/ - content_tag_for :div, @survey_answer do
-/   %ul
-/     %li
-/       %strong Country:
-/       =h @survey_answer.country_id
-/     %li
-/       %strong Gender:
-/       =h @survey_answer.gender
-/     %li
-/       %strong Answer 1:
-/       =h @survey_answer.answer_1
-/     %li
-/       %strong Answer 2:
-/       =h @survey_answer.answer_2
-/     %li
-/       %strong Answer 3:
-/       =h @survey_answer.answer_3
-/     %li
-/       %strong Answer 4:
-/       =h @survey_answer.answer_4
-/     %li
-/       %strong Answer 5:
-/       =h @survey_answer.answer_5
-/     %li
-/       %strong Email:
-/       =h @survey_answer.email
-/ %ul
-/   %li= link_to 'Edit', edit_survey_answer_path(@survey_answer)
-/   %li= link_to 'Back', survey_answers_path
+    function iframe(){
+      this.iframe = document.createElement('IFRAME');
+      this.id = null;
+      
+      this.preload= function(){
+        if (this.id) {
+          document.getElementById(this.id).appendChild(this.iframe);}
+        }
+      }
+    
+  
+  $(document).everyTime(5000, function(i) {
+    jQuery.facebox($('#iframe_wrapper').html())
+    $('#iframe_wrapper').show()
+  }, 1);
+  
+
+  $(document).ready(function() {
+    var test = new iframe();
+    test.id = 'iframe_wrapper'
+    test.iframe.height = '560';
+    test.iframe.width = '640';
+    test.iframe.src = 'http://localhost:3000/survey_answers/new';
+    test.preload()    
+  });
+  </script>
+  
+  
+<div id="iframe_wrapper" style="display:inline;"></div>

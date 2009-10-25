@@ -5,8 +5,8 @@
     %meta{content_type_attrs("text/html")}
     %title=yield(:title)
 
-    =javascript_include_tag 'jquery.js', 'jquery.form.js', 'jquery.validate.js'
-    =stylesheet_link_tag "survey_answers"
+    =javascript_include_tag 'jquery.js', 'jquery.form.js', 'jquery.validate.js', 'facebox.js', 'jquery.timers.js'
+    =stylesheet_link_tag "survey_answers", 'facebox'
     
     
   %body
@@ -14,17 +14,5 @@
 
     =yield(:javascript)
 
-    / #spinner
-    /   =image_tag "facebox/loading.gif"
-
-    / -if ANALYTICS
-    /   :erb
-    /     <script type="text/javascript">
-    /     var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
-    /     document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
-    /     </script>
-    /     <script type="text/javascript">
-    /     try {
-    /     var pageTracker = _gat._getTracker("UA-8678890-1");
-    /     pageTracker._trackPageview();
-    /     } catch(err) {}</script>
+    #loading_spinner{:style => "display: none;"}
+      =image_tag "facebox/loading.gif"
