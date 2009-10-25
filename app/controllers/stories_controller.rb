@@ -2,7 +2,7 @@ class StoriesController < ApplicationController
   # GET /stories
   # GET /stories.xml
 
-  layout "application"
+  layout false
 
   protect_from_forgery :only => [:create, :update, :destroy] 
   before_filter :prepare_stuff, :only => [:vote_top, :vote_flop] 
