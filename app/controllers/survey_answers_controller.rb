@@ -1,6 +1,8 @@
 class SurveyAnswersController < ApplicationController
 
   before_filter :find_survey_answer
+  
+  protect_from_forgery :except => [:create, :new]
 
   SURVEY_ANSWERS_PER_PAGE = 20
 
