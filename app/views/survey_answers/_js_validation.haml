@@ -7,10 +7,15 @@
 
     function submit_form(form) {
       $("#loading_spinner").show();
+      
+      form.submit();
+      
+      /*
       $("input:submit", form).attr("disabled", true)    
         $(form).ajaxSubmit({
           success: evalResponse
           });
+      */
     }
     
     $(document).ready(function() {
