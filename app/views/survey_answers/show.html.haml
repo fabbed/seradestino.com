@@ -1,32 +1,37 @@
-:erb
-  <script type="text/javascript">
+%h3 Muchas gracias!
 
-    function iframe(){
-      this.iframe = document.createElement('IFRAME');
-      this.id = null;
-      
-      this.preload= function(){
-        if (this.id) {
-          document.getElementById(this.id).appendChild(this.iframe);}
-        }
-      }
-    
-  
-  $(document).everyTime(5000, function(i) {
-    jQuery.facebox($('#iframe_wrapper').html())
-    $('#iframe_wrapper').show()
-  }, 1);
-  
+%p
+  =link_to "Volver a xalut.com", "http://www.xalut.com"
 
-  $(document).ready(function() {
-    var test = new iframe();
-    test.id = 'iframe_wrapper'
-    test.iframe.height = '560';
-    test.iframe.width = '640';
-    test.iframe.src = 'http://localhost:3000/survey_answers/new';
-    test.preload()    
-  });
-  </script>
-  
-  
-<div id="iframe_wrapper" style="display:inline;"></div>
+// :erb
+//   <script type="text/javascript">
+// 
+//     function iframe(){
+//       this.iframe = document.createElement('IFRAME');
+//       this.id = null;
+//       
+//       this.preload= function(){
+//         if (this.id) {
+//           document.getElementById(this.id).appendChild(this.iframe);}
+//         }
+//       }
+//     
+//   
+//   $(document).everyTime(5000, function(i) {
+//     jQuery.facebox($('#iframe_wrapper').html())
+//     $('#iframe_wrapper').show()
+//   }, 1);
+//   
+// 
+//   $(document).ready(function() {
+//     var test = new iframe();
+//     test.id = 'iframe_wrapper'
+//     test.iframe.height = '560';
+//     test.iframe.width = '640';
+//     test.iframe.src = 'http://localhost:3000/survey_answers/new';
+//     test.preload()    
+//   });
+//   </script>
+//   
+//   
+// <div id="iframe_wrapper" style="display:inline;"></div>
