@@ -23,8 +23,12 @@ namespace :sd do
       answer_obj=SurveyAnswer.find_by_id(answer.id)
       puts "ID: #{answer_obj.id.to_s}"
 
-      answers_with_same_answers = SurveyAnswer.find(:all, :conditions => ['answer_1 = ? AND answer_2 = ? AND answer_3 = ?', answer_obj.answer_1.to_s,  answer_obj.answer_2.to_s, answer_obj.answer_3.to_s])
+      answers_with_same_answers = SurveyAnswer.find(:all, :conditions => ['answer_1 = ? AND answer_2 = ?', answer_obj.answer_1.to_s,  answer_obj.answer_2.to_s])
+      
       puts "# Same stories: #{answers_with_same_answers.size}"
+      answers_with_same_answers.each do |same_answer|
+        puts "story: " + same_answer.id.to_s
+      end
 
       answers_with_same_answers[1..answers_with_same_answers.size].each do |answer_to_delete|
         puts "To delete: " + answer_to_delete.id.to_s
