@@ -22,6 +22,17 @@ module ApplicationHelper
   end
 
 
+  def flag_for_country_id(id)
+    country = Country.find_by_id(id)
+    return (image_tag("new/flags/" + country.iso.downcase + ".png", :title => country.name, :class => "tooltip")) if country.iso
+  end
+  
+  def country_name_for_country_id(id)
+    country = Country.find_by_id(id)
+    return (country.name) if country
+  end
+  
+
   def get_flag_for_user(user)
     return (image_tag "flags/" + user.country.iso.upcase + ".gif")
   end

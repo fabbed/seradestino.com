@@ -1,3 +1,16 @@
+.errorExplanation p{
+  display: none;
+}
+
+.survey .errorExplanation h2{
+  display: none;
+}
+
+.survey .errorExplanation li{
+  color: red;
+}
+
+
 .survey input.error{
   background-color: red;
   color: black;

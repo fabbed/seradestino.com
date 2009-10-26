@@ -1,8 +1,26 @@
-%h2 Listing survey_answers
-- if !@survey_answers.empty?
-  .survey_answers
-    = render :partial => "survey_answer", :collection => @survey_answers
-  = will_paginate(@survey_answers)
-- else
-  %p There are no survey_answers to show yet.
-= link_to 'New survey_answer', new_survey_answer_path
+=tabnav :survey_admin
+%br
+%br
+-if params[:encuesta] == "1"
+  %h1 Respuestas a encuesta #1 (Símbolos del pais)
+-elsif params[:encuesta] == "2"
+  %h1 Respuestas a encuesta #2 (Símbolos del destino)
+-else
+  %h1 Respuestas a encuesta #1 (Símbolos del pais)
+
+= will_paginate(@survey_answers)
+%br
+
+%table#mytable{:cellspacing=>"0", :summary=>"Projects"}
+  %tr
+    %th ID
+    %th País
+    %th Sexo
+    %th Símbolo #1
+    %th Símbolo #2
+    %th Símbolo #3
+    %th Símbolo #4
+    // %th Email
+    %th Acciones
+  = render :partial => "survey_answer", :collection => @survey_answers
+          

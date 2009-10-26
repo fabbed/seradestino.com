@@ -1,10 +1,14 @@
 class SurveyAnswersController < ApplicationController
 
+  before_filter :authenticate, :except => [:create, :new]
+  SURVEY_ANSWERS_PER_PAGE = 20
   before_filter :find_survey_answer
   
   protect_from_forgery :except => [:create, :new]
 
   SURVEY_ANSWERS_PER_PAGE = 20
+
+  layout "survey_answers", :only => [:new, :create]
 
   def create
 
@@ -21,8 +25,7 @@ class SurveyAnswersController < ApplicationController
         }
       end
     else
-      wants.js {  render :text => "alert('Hay errores');", :layout => false}  
-      format.html { render :action => "new" }
+      render :action => "new"
     end
 
   end
@@ -42,9 +45,18 @@ class SurveyAnswersController < ApplicationController
   end
 
   def index
-    @survey_answers = SurveyAnswer.paginate(:page => params[:page], :per_page => SURVEY_ANSWERS_PER_PAGE)
+
+    if params[:encuesta] == "1"
+      @survey_answers = SurveyAnswer.find(:all, :conditions => ['survey_identifier = ?', "survey_1"], :order => "country_id asc").paginate(:page => params[:page], :per_page => SURVEY_ANSWERS_PER_PAGE)
+    elsif params[:encuesta] == "2"
+      @survey_answers = SurveyAnswer.find(:all, :conditions => ['survey_identifier = ?', "survey_2"], :order => "country_id asc").paginate(:page => params[:page], :per_page => SURVEY_ANSWERS_PER_PAGE)
+    else
+      params[:encuesta] == "1"
+      @survey_answers = SurveyAnswer.find(:all, :conditions => ['survey_identifier = ?', "survey_1"], :order => "country_id asc").paginate(:page => params[:page], :per_page => SURVEY_ANSWERS_PER_PAGE)
+    end
+    
     respond_to do |format|
-      format.html
+      format.html {render :template => "/survey_answers/index", :layout => "admin"}
       format.xml  { render :xml => @survey_answers }
     end
   end
@@ -84,6 +96,12 @@ class SurveyAnswersController < ApplicationController
 
   def find_survey_answer
     @survey_answer = SurveyAnswer.find(params[:id]) if params[:id]
+  end
+
+  def authenticate
+    authenticate_or_request_with_http_basic do |user_name, password|
+      user_name == "seradestino" && password == "diego"
+    end
   end
 
 end

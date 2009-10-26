@@ -1,29 +1,27 @@
-- content_tag_for :div, survey_answer do
-  %ul
-    %li
-      %strong Country:
-      =h survey_answer.country_id
-    %li
-      %strong Gender:
-      =h survey_answer.gender
-    %li
-      %strong Answer 1:
-      =h survey_answer.answer_1
-    %li
-      %strong Answer 2:
-      =h survey_answer.answer_2
-    %li
-      %strong Answer 3:
-      =h survey_answer.answer_3
-    %li
-      %strong Answer 4:
-      =h survey_answer.answer_4
-    %li
-      %strong Answer 5:
-      =h survey_answer.answer_5
-    %li
-      %strong Email:
-      =h survey_answer.email
+%tr
+  %td
+    =h survey_answer.id
+  %td
+    .info
+      .flag
+        =flag_for_country_id(survey_answer.country_id)
+        =country_name_for_country_id(survey_answer.country_id)
+  %td
+    =h survey_answer.gender
+  %td
+    =h survey_answer.answer_1
+  %td
+    =h survey_answer.answer_2
+  %td
+    =h survey_answer.answer_3
+  %td
+    =h survey_answer.answer_4
+  // %td
+  //   =h survey_answer.email
+  %td
     = link_to 'Show', survey_answer
     = link_to 'Edit', edit_survey_answer_path(survey_answer)
     = link_to 'Destroy', survey_answer, :confirm => 'Are you sure?', :method => :delete
+    
+    
+    
