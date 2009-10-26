@@ -1,6 +1,6 @@
 class SurveyAnswersController < ApplicationController
 
-  before_filter :authenticate, :except => [:create, :new]
+  before_filter :authenticate, :except => [:create, :new, :show]
   SURVEY_ANSWERS_PER_PAGE = 20
   before_filter :find_survey_answer
   
