@@ -1,0 +1,34 @@
+<%  
+# this partial renders a tabnav, you can call it in your views with:
+#   <%= tabnav :survey_admin % > (just the tabnav) 
+# or, if you want a boxed tabnav:
+#   <% tabnav :survey_admin do % >
+#     your html here
+#   <% end % >
+# (remove the space between % and >, we don't want to mess up your brand new tabnav :-))
+#
+# you can pass render_tabnav a few options:
+#   :generate_css => true|false #=> generates a default inline css for the tabnav, defaults to false
+#   :html => aHash #=> sets html options for the tabnav's div (es :html => {:class=> 'myCssClass', :id=>'myCssId'}) 
+#     
+render_tabnav :survey_admin, 
+              :generate_css => true do 
+
+
+
+
+  add_tab do |t|
+   t.named 'Encuesta #1'
+   t.titled ''
+   t.links_to :controller => '/survey_answers', :action => "index", :encuesta=>1
+  end 
+    
+  add_tab do |t|
+   t.named 'Encuesta #2'
+   t.titled ''
+   t.links_to :controller => '/survey_answers', :action => "index", :encuesta=>2
+  end 
+             
+
+end 
+%>
