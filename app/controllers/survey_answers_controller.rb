@@ -6,7 +6,7 @@ class SurveyAnswersController < ApplicationController
   
   protect_from_forgery :except => [:create, :new]
 
-  SURVEY_ANSWERS_PER_PAGE = 20
+  SURVEY_ANSWERS_PER_PAGE = 40
 
   layout "survey_answers", :only => [:new, :create]
 
@@ -53,6 +53,10 @@ class SurveyAnswersController < ApplicationController
 
     elsif params[:encuesta] == "2"
       @survey_answers = SurveyAnswer.find(:all, :conditions => ['survey_identifier = ?', "survey_2"], :order => "country_id asc").paginate(:page => params[:page], :per_page => SURVEY_ANSWERS_PER_PAGE)
+
+      @country_survey_answers = SurveyAnswer.find(:all, :conditions => ['survey_identifier = ? and country_id IN (?,?,?)', "survey_2", Country.find_by_name("Colombia").used_id, Country.find_by_name("España").used_id, Country.find_by_name("México").used_id], :order => "country_id asc")
+
+
     else
       params[:encuesta] == "1"
       @survey_answers = SurveyAnswer.find(:all, :conditions => ['survey_identifier = ?', "survey_1"], :order => "country_id asc").paginate(:page => params[:page], :per_page => SURVEY_ANSWERS_PER_PAGE)

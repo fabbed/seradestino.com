@@ -27,12 +27,6 @@
     = render :partial => "survey_answer", :collection => @survey_answers
           
 -elsif params[:view] == "sort"
-  -if params[:encuesta] == "1"
-    =render :partial => "answers_for_country", :locals => {:country => "México"}
-    =render :partial => "answers_for_country", :locals => {:country => "España"}
-    =render :partial => "answers_for_country", :locals => {:country => "Colombia"}
-  
-  -if params[:encuesta] == "2"
-    =flag_for_country_id(Country.find_by_name("México").used_id)    
-  
-  -#@country_survey_answers.map { |e| e.}
+  =render :partial => "answers_for_country", :locals => {:country => "México"}
+  =render :partial => "answers_for_country", :locals => {:country => "España"}
+  =render :partial => "answers_for_country", :locals => {:country => "Colombia"}
