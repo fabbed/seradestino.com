@@ -7,11 +7,11 @@
 
     function submit_form(form) {
       $("#loading_spinner").show();
-      
+      $("input:submit", form).attr("disabled", true);      
       form.submit();
       
       /*
-      $("input:submit", form).attr("disabled", true)    
+
         $(form).ajaxSubmit({
           success: evalResponse
           });

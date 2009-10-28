@@ -22,11 +22,24 @@ render_tabnav :survey_admin,
    t.titled ''
    t.links_to :controller => '/survey_answers', :action => "index", :encuesta=>1
   end 
-    
+
+  add_tab do |t|
+   t.named 'Encuesta #1 - Orden Alph.'
+   t.titled ''
+   t.links_to :controller => '/survey_answers', :action => "index", :encuesta=>1, :view => "sort"
+  end 
+
+  
   add_tab do |t|
    t.named 'Encuesta #2'
    t.titled ''
    t.links_to :controller => '/survey_answers', :action => "index", :encuesta=>2
+  end 
+
+  add_tab do |t|
+   t.named 'Encuesta #2 - Orden Alph.'
+   t.titled ''
+   t.links_to :controller => '/survey_answers', :action => "index", :encuesta=>2, :view => "sort"
   end 
              
 

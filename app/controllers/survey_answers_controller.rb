@@ -1,6 +1,6 @@
 class SurveyAnswersController < ApplicationController
 
-  before_filter :authenticate, :except => [:create, :new, :show]
+  before_filter :authenticate, :except => [:create, :new, :show] if !(RAILS_ENV == "development")
   SURVEY_ANSWERS_PER_PAGE = 20
   before_filter :find_survey_answer
   
@@ -48,6 +48,9 @@ class SurveyAnswersController < ApplicationController
 
     if params[:encuesta] == "1"
       @survey_answers = SurveyAnswer.find(:all, :conditions => ['survey_identifier = ?', "survey_1"], :order => "country_id asc").paginate(:page => params[:page], :per_page => SURVEY_ANSWERS_PER_PAGE)
+
+      @country_survey_answers = SurveyAnswer.find(:all, :conditions => ['survey_identifier = ? and country_id IN (?,?,?)', "survey_1", Country.find_by_name("Colombia").used_id, Country.find_by_name("España").used_id, Country.find_by_name("México").used_id], :order => "country_id asc")
+
     elsif params[:encuesta] == "2"
       @survey_answers = SurveyAnswer.find(:all, :conditions => ['survey_identifier = ?', "survey_2"], :order => "country_id asc").paginate(:page => params[:page], :per_page => SURVEY_ANSWERS_PER_PAGE)
     else
