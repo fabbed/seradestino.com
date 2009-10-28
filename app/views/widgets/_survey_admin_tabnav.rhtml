@@ -41,6 +41,18 @@ render_tabnav :survey_admin,
    t.titled ''
    t.links_to :controller => '/survey_answers', :action => "index", :encuesta=>2, :view => "sort"
   end 
+
+  add_tab do |t|
+   t.named 'Encuesta #3'
+   t.titled ''
+   t.links_to :controller => '/survey_answers', :action => "index", :encuesta=>3
+  end 
+
+  add_tab do |t|
+   t.named 'Encuesta #3 - Orden Alph.'
+   t.titled ''
+   t.links_to :controller => '/survey_answers', :action => "index", :encuesta=>3, :view => "sort"
+  end 
              
 
 end 

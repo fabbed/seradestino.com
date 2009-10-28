@@ -56,6 +56,11 @@ class SurveyAnswersController < ApplicationController
 
       @country_survey_answers = SurveyAnswer.find(:all, :conditions => ['survey_identifier = ? and country_id IN (?,?,?)', "survey_2", Country.find_by_name("Colombia").used_id, Country.find_by_name("España").used_id, Country.find_by_name("México").used_id], :order => "country_id asc")
 
+    elsif params[:encuesta] == "3"
+      @survey_answers = SurveyAnswer.find(:all, :conditions => ['survey_identifier = ?', "survey_3"], :order => "country_id asc").paginate(:page => params[:page], :per_page => SURVEY_ANSWERS_PER_PAGE)
+
+      @country_survey_answers = SurveyAnswer.find(:all, :conditions => ['survey_identifier = ? and country_id IN (?,?,?)', "survey_3", Country.find_by_name("Colombia").used_id, Country.find_by_name("España").used_id, Country.find_by_name("México").used_id], :order => "country_id asc")
+
 
     else
       params[:encuesta] == "1"
