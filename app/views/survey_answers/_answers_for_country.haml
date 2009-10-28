@@ -1,0 +1,20 @@
+.cl
+%br
+%br
+%h1=flag_for_country_id(Country.find_by_name(country).used_id)+" #{country} - Símbolos del pais"
+-symbols = @country_survey_answers.find_all{|answer| answer.country_id == Country.find_by_name(country).used_id }.inject([]) { |symbols, answer|  symbols.push (answer.answer_1, answer.answer_2, answer.answer_3, answer.answer_4)}
+.results
+  -counter = 30
+  :erb
+    <div class="new_column">
+  -symbols.sort.each_with_index do |symbol, i|
+    -counter = counter - 1
+    -if counter == 0
+      :erb
+        </div>
+      -counter = 30
+      :erb
+        <div class="new_column">
+        
+    =symbol
+    %br
