@@ -33,7 +33,9 @@
             required: true
           },
           "survey_answer[answer_1]": {
-            required: true
+            required: true,
+            minlength: 3
+            
           },
           "survey_answer[email]": {
             email: true
@@ -48,7 +50,8 @@
           required: "Pon tu sexo"
         },
         "survey_answer[answer_1]": {
-          required: "Pon al menos un símbolo."
+          required: "Pon al menos un símbolo.",
+          minlength: "Esto no es un símbolo"
         },
         "survey_answer[email]": {
           email: "Este email no es valido"        
